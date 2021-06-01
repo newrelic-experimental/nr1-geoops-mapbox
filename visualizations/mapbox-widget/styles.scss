@@ -1,0 +1,226 @@
+.EmptyState,
+.ErrorState {
+  height: 100%;
+  text-align: center;
+
+  &-cardBody {
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.ErrorState-headingText {
+  color: darkgrey;
+}
+
+@import url('//cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.css');
+// @import '~@newrelic/nr1-community/dist/index.css';
+@import '~mapbox-gl/dist/mapbox-gl.css';
+
+.react-select-input-right {
+  margin-right: 10px !important;
+
+  // position: relative;
+  // width: 100%;
+  max-width: 325px;
+  // margin-right: 8px;
+
+  label {
+    // position: absolute;
+    // top: 7px;
+    // left: 12px;
+    // z-index: 10;
+    font-size: 10px;
+    // text-transform: uppercase;
+    // letter-spacing: .25px;
+    // color: #6C797A;
+  }
+}
+
+.alert-filter {
+  width: 500px;
+}
+
+.map-sidebar {
+  background-color: white;
+  height: auto !important;
+}
+
+.react-select-input-group-alerts {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin-right: 8px;
+
+  label {
+    position: absolute;
+    top: 7px;
+    left: 12px;
+    z-index: 10;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25px;
+    color: #6c797a;
+  }
+}
+
+.react-select-input-group {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  margin-right: 8px;
+
+  label {
+    position: absolute;
+    top: 7px;
+    left: 12px;
+    z-index: 10;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25px;
+    color: #6c797a;
+  }
+}
+
+.react-create-input-group {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  margin-right: 8px;
+
+  label {
+    position: absolute;
+    top: 5px;
+    left: 12px;
+    z-index: 10;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.25px;
+    color: #6c797a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 175px;
+  }
+}
+
+.react-select-input-group-wide {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin-right: 8px;
+
+  label {
+    position: absolute;
+    top: 7px;
+    left: 12px;
+    z-index: 10;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25px;
+    color: #6c797a;
+  }
+}
+
+.react-select__control {
+  height: 45px;
+  font-size: 13px;
+  color: #2a3434;
+  border-radius: 0px;
+}
+
+.react-select__menu {
+  z-index: 11 !important;
+  border-radius: 0px;
+}
+
+.react-select__indicator-separator {
+  display: none;
+}
+
+.react-select__control--is-focused {
+  border-color: #007e8a;
+  box-shadow: 0 0 0 1px #007e8a;
+
+  &:hover {
+    border-color: #007e8a;
+    box-shadow: 0 0 0 1px #007e8a;
+  }
+}
+
+.react-select__option--is-focused {
+  background-color: #007e8a18;
+}
+
+.react-select__option--is-selected {
+  background-color: #007e8a;
+
+  &:hover {
+    background-color: #007e8a;
+  }
+}
+
+.react-select__value-container {
+  top: 8px;
+}
+
+.utility-bar {
+  width: 100%;
+  height: 60px;
+  background-color: #edeeee;
+  display: flex;
+  // justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 16px;
+  border-top: 1px solid #d5d7d7;
+
+  hr {
+    height: 100%;
+    width: 0px;
+    margin: 16px;
+    border-right: 1px dotted #b9bdbdaf;
+    border-left: 0;
+  }
+}
+
+.ui.input > input {
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  -webkit-box-flex: 1 !important;
+  -ms-flex: 1 0 auto !important;
+  flex: 1 0 auto !important;
+  outline: 0 !important;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+  text-align: left !important;
+  line-height: 1.21428571em !important;
+  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+  padding: 0.67857143em 1em !important;
+  background: #fff !important;
+  border: 1px solid rgba(34, 36, 38, 0.15) !important;
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 0.28571429rem !important;
+  -webkit-transition: border-color 0.1s ease, -webkit-box-shadow 0.1s ease !important;
+  transition: border-color 0.1s ease, -webkit-box-shadow 0.1s ease !important;
+  transition: box-shadow 0.1s ease, border-color 0.1s ease !important;
+  transition: box-shadow 0.1s ease, border-color 0.1s ease,
+    -webkit-box-shadow 0.1s ease !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.ui.segment {
+  background: '' !important;
+  padding: 0px !important;
+  border: 0px !important;
+}
+
+.txtarea {
+  border: 1px solid rgba(34, 36, 38, 0.15) !important;
+  color: rgba(0, 0, 0, 0.87) !important;
+  border-radius: 0.28571429rem !important;
+}

@@ -1,0 +1,14 @@
+{
+  "schemaType": "VISUALIZATION",
+  "id": "mapbox",
+  "displayName": "GeoOps Mapbox Widget",
+  "description": "Visualize your entities and data with Mapbox",
+  "configuration": [
+    {
+      "name": "mapName",
+      "title": "Map Name",
+      "description": "Enter a valid map name",
+      "type": "string"
+    }
+  ]
+}

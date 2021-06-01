@@ -1,0 +1,6 @@
+{
+    "schemaType": "NERDLET",
+    "id": "nr1-geoops-mapbox-nerdlet",
+    "displayName": "GeoOps Mapbox",
+    "description": "Visualize your entities and data with Mapbox"
+}

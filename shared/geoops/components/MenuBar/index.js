@@ -64,7 +64,14 @@ export default class MenuBar extends React.PureComponent {
     }));
   };
 
-  buildFilteredLocationOptions = (alertFilter, features) => {};
+  buildFavoriteOptions = favorites => {
+    return favorites.map(favorite => ({
+      key: favorite.name,
+      label: favorite.name,
+      text: favorite.name,
+      value: favorite
+    }));
+  };
 
   render() {
     return (
@@ -164,6 +171,22 @@ export default class MenuBar extends React.PureComponent {
                         classNamePrefix="react-select"
                       />
                     </div>
+                    <div className="react-select-input-group">
+                      <label>Favorites</label>
+                      <Select
+                        options={this.buildFavoriteOptions(
+                          document.favorites || []
+                        )}
+                        isSearchable
+                        isClearable
+                        onChange={selectedLocation =>
+                          updateMapContext({
+                            selectedLocation: (selectedLocation || {}).value
+                          })
+                        }
+                        classNamePrefix="react-select"
+                      />
+                    </div>
                     <div className="react-select-input-group-alerts">
                       <label>Alert Status</label>
                       <Select
@@ -191,7 +214,7 @@ export default class MenuBar extends React.PureComponent {
                       onClick={() => fetchData(true)}
                     />
                     {((geojson || {}).timestamp || false) &&
-                      `Last Updated @ ${new Date(
+                      `Updated @ ${new Date(
                         geojson.timestamp
                       ).toLocaleTimeString()}`}
                     <div style={{ float: 'right', marginLeft: 'auto' }}>
@@ -213,6 +236,17 @@ export default class MenuBar extends React.PureComponent {
                         onClick={() =>
                           updateMapContext({
                             queryModalOpen: true,
+                            selectedMap
+                          })
+                        }
+                      />
+                      <Icon
+                        name="star"
+                        size="big"
+                        link
+                        onClick={() =>
+                          updateMapContext({
+                            favoritesModalOpen: true,
                             selectedMap
                           })
                         }

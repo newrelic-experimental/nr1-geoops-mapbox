@@ -6,6 +6,7 @@ import ViewMap from './ViewMap';
 import MenuBar from './MenuBar';
 import { Spinner, Card, CardBody, HeadingText } from 'nr1';
 import CustomQuery from './CustomQuery';
+import Favorites from './Favorites';
 
 export default class GeoOpsContainer extends React.Component {
   render() {
@@ -17,6 +18,7 @@ export default class GeoOpsContainer extends React.Component {
           selectedMap,
           createMapModalOpen,
           queryModalOpen,
+          favoritesModalOpen,
           //   updateMapContext,
           //   fullscreenMode,
           loadingGeomaps,
@@ -48,6 +50,7 @@ export default class GeoOpsContainer extends React.Component {
 
                 {createMapModalOpen && <CreateMap />}
                 {queryModalOpen && <CustomQuery />}
+                {favoritesModalOpen && <Favorites />}
 
                 <MenuBar />
 
@@ -64,6 +67,7 @@ export default class GeoOpsContainer extends React.Component {
             <>
               {createMapModalOpen && <CreateMap />}
               {queryModalOpen && <CustomQuery />}
+              {favoritesModalOpen && <Favorites />}
 
               <MenuBar />
 

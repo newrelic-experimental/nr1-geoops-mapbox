@@ -23,6 +23,7 @@ export class DataProvider extends React.Component {
     selectedLocation: null,
     createMapModalOpen: false,
     queryModalOpen: false,
+    favoritesModalOpen: false,
     stateFilter: '',
     alertFilter: '',
     fullscreen: false,
@@ -182,6 +183,10 @@ export class DataProvider extends React.Component {
         }
 
         if (prevState.queryModalOpen && !newState.queryModalOpen) {
+          this.loadGeomaps();
+        }
+
+        if (prevState.favoritesModalOpen && !newState.favoritesModalOpen) {
           this.loadGeomaps();
         }
 

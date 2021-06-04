@@ -89,6 +89,8 @@ export default class ViewMap extends React.Component {
         }) => {
           const mapLoaded = selectedMap?.mapLoaded || false;
 
+          console.log(selectedLocation);
+
           if (!mapLoaded) {
             return (
               <div

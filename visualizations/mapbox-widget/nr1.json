@@ -1,6 +1,6 @@
 {
   "schemaType": "VISUALIZATION",
-  "id": "mapbox",
+  "id": "nr1-geoops-mapbox-widget",
   "displayName": "GeoOps Mapbox Widget",
   "description": "Visualize your entities and data with Mapbox",
   "configuration": [

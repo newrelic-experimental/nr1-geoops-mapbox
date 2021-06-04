@@ -24,7 +24,8 @@ module.exports = {
     'no-new': 0,
     'no-case-declarations': 0,
     'eslint-comments/no-unlimited-disable': 0,
-    'no-template-curly-in-string': 0
+    'no-template-curly-in-string': 0,
+    'no-nested-ternary': 0
   },
   globals: {
     Atomics: 'readonly',

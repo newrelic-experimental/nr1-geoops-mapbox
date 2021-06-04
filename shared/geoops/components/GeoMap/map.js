@@ -40,20 +40,28 @@ export default class Map extends React.PureComponent {
 
   updateSelectedLocation = selectedLocation => {
     const { selectedMap, updateMapState } = this.props;
-    const { lat, lng } = selectedLocation?.location || {};
-    const { properties } = selectedMap.geojson.features.find(
-      f => f.properties.guid === selectedLocation.guid
-    );
 
     this.setState({ selectedLocation }, () => {
-      updateMapState({
-        showPopup: true,
-        popupData: {
-          properties,
-          lat: parseFloat(lat),
-          lng: parseFloat(lng)
-        }
-      }).then(() => this.moveViewport(lat, lng, 14));
+      if (selectedLocation.guid) {
+        const { lat, lng } = selectedLocation?.location || {};
+
+        const { properties } = (selectedMap?.geojson?.features || []).find(
+          f => f.properties.guid === selectedLocation.guid
+        );
+
+        updateMapState({
+          showPopup: properties ? true : false,
+          popupData: {
+            properties: properties || undefined,
+            lat: parseFloat(lat),
+            lng: parseFloat(lng)
+          }
+        }).then(() => this.moveViewport(lat, lng, 14));
+      } else {
+        const { lat, lng, zoom } = selectedLocation;
+
+        this.moveViewport(lat, lng, zoom || 14);
+      }
     });
   };
 
@@ -136,10 +144,15 @@ export default class Map extends React.PureComponent {
     }
   };
 
-  handleViewportChanged = viewport =>
-    this.setState({ viewport: { ...this.state.viewport, ...viewport } });
+  handleViewportChanged = (viewport, updateMapContext) => {
+    const { latitude, longitude, zoom } = viewport;
+    this.setState({ viewport: { ...this.state.viewport, ...viewport } }, () =>
+      updateMapContext({ currentViewport: { latitude, longitude, zoom } })
+    );
+  };
 
   render() {
+    const { updateMapContext } = this.props;
     const { error, viewport, apiKey, mapStyle } = this.state;
 
     if (error) {
@@ -156,7 +169,9 @@ export default class Map extends React.PureComponent {
         ref={this.mapRef}
         mapboxApiAccessToken={apiKey}
         mapStyle={mapStyle}
-        onViewportChange={this.handleViewportChanged}
+        onViewportChange={viewport =>
+          this.handleViewportChanged(viewport, updateMapContext)
+        }
         onClick={this.handleMapClick}
         onHover={map => this.handleMapClick(map, true)}
       >

@@ -351,8 +351,9 @@ export default class CustomQuery extends React.PureComponent {
                               width="3"
                               label="Filter Entities"
                               checked={
-                                this.state[`${i}_filterEntities`] !==
-                                  undefined || q.filterEntities
+                                this.state[`${i}_filterEntities`] !== undefined
+                                  ? this.state[`${i}_filterEntities`]
+                                  : q.filterEntities
                               }
                               onChange={(e, d) =>
                                 this.setState({
@@ -364,8 +365,9 @@ export default class CustomQuery extends React.PureComponent {
                               width="3"
                               label="Hide Title"
                               checked={
-                                this.state[`${i}_hideTitle`] !== undefined ||
-                                q.hideTitle
+                                this.state[`${i}_hideTitle`] !== undefined
+                                  ? this.state[`${i}_hideTitle`]
+                                  : q.hideTitle
                               }
                               onChange={(e, d) =>
                                 this.setState({

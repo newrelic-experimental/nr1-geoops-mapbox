@@ -34,6 +34,7 @@ export default class Map extends React.PureComponent {
     }
 
     if (newProps.fullscreen && newProps.fullscreen !== this.state.fullscreen) {
+      // eslint-disable-next-line
       this.setState({ fullscreen: newProps.fullscreen });
     }
   };
@@ -50,7 +51,7 @@ export default class Map extends React.PureComponent {
         );
 
         updateMapState({
-          showPopup: properties ? true : false,
+          showPopup: properties,
           popupData: {
             properties: properties || undefined,
             lat: parseFloat(lat),

@@ -305,7 +305,11 @@ export default class CustomQuery extends React.PureComponent {
                               width="3"
                               label="Category"
                               required
-                              value={this.state[`${i}_category`] || q.category}
+                              value={
+                                this.state[`${i}_category`] !== undefined
+                                  ? this.state[`${i}_category`]
+                                  : q.category
+                              }
                               onChange={e =>
                                 this.setState({
                                   [`${i}_category`]: e.target.value
@@ -316,7 +320,11 @@ export default class CustomQuery extends React.PureComponent {
                               width="3"
                               label="Name"
                               required
-                              value={this.state[`${i}_name`] || q.name}
+                              value={
+                                this.state[`${i}_name`] !== undefined
+                                  ? this.state[`${i}_name`]
+                                  : q.name
+                              }
                               onChange={e =>
                                 this.setState({
                                   [`${i}_name`]: e.target.value
@@ -327,7 +335,11 @@ export default class CustomQuery extends React.PureComponent {
                               width="2"
                               label="Chart Type"
                               required
-                              value={this.state[`${i}_chart`] || q.chart}
+                              value={
+                                this.state[`${i}_chart`] !== undefined
+                                  ? this.state[`${i}_chart`]
+                                  : q.chart
+                              }
                               onChange={e =>
                                 this.setState({
                                   [`${i}_chart`]: e.target.value
@@ -338,7 +350,11 @@ export default class CustomQuery extends React.PureComponent {
                               width="8"
                               label="NRQL"
                               required
-                              value={this.state[`${i}_nrql`] || q.nrql}
+                              value={
+                                this.state[`${i}_nrql`] !== undefined
+                                  ? this.state[`${i}_nrql`]
+                                  : q.nrql
+                              }
                               onChange={e =>
                                 this.setState({
                                   [`${i}_nrql`]: e.target.value

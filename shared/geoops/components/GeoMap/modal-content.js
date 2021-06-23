@@ -28,7 +28,7 @@ export default class ModalContent extends React.PureComponent {
       finalNrql += ` WHERE entityGuid IN ('${guids.join("','")}')`;
     }
 
-    finalNrql.replaceAll('${name}', name); //eslint-disable-line
+    finalNrql = finalNrql.replaceAll('${name}', name); //eslint-disable-line
 
     switch (q.chart) {
       case 'billboard': {

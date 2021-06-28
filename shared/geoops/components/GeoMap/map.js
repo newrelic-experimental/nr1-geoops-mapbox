@@ -11,17 +11,19 @@ export default class Map extends React.PureComponent {
 
     this.mapRef = React.createRef();
 
+    console.log(props);
+
     this.state = {
       error: apiKey ? false : 'Error: API Key not found. Check map config',
       apiKey: apiKey,
       mapStyle: mapStyle || 'mapbox://styles/mapbox/light-v10',
       fullscreen: props.fullscreen,
       viewport: {
-        latitude: parseFloat(lat) || 0,
-        longitude: parseFloat(lng) || 0,
+        latitude: parseFloat(props.lat) || parseFloat(lat) || 0,
+        longitude: parseFloat(props.lng) || parseFloat(lng) || 0,
         width: props.width || '100%',
         height: props.height || '95vh',
-        zoom: defaultZoom || 4
+        zoom: parseFloat(props.zoom) || defaultZoom || 4
       }
     };
   }

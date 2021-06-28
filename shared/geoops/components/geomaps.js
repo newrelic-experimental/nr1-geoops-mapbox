@@ -11,6 +11,9 @@ import Favorites from './Favorites';
 export default class GeoOpsContainer extends React.Component {
   render() {
     const hideMenu = this.props?.vizConfig?.hideMenu || null;
+    const lat = this.props?.vizConfig?.lat || null;
+    const lng = this.props?.vizConfig?.lng || null;
+    const zoom = this.props?.vizConfig?.zoom || null;
 
     return (
       <DataConsumer>
@@ -67,6 +70,9 @@ export default class GeoOpsContainer extends React.Component {
                         hideMenu={hideMenu}
                         width={width}
                         height={height}
+                        lat={lat}
+                        lng={lng}
+                        zoom={zoom}
                       />
                     )}
                   </>

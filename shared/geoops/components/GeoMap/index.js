@@ -74,7 +74,10 @@ export default class GeoMap extends React.PureComponent {
       selectedLocation,
       updateMapContext,
       width,
-      height
+      height,
+      lat,
+      lng,
+      zoom
     } = this.props;
 
     const { geojson } = selectedMap;
@@ -96,6 +99,9 @@ export default class GeoMap extends React.PureComponent {
         <Map
           width={width}
           height={height}
+          lat={lat}
+          lng={lng}
+          zoom={zoom}
           selectedMap={selectedMap}
           moveViewport={moveViewport}
           updateMapContext={updateMapContext}

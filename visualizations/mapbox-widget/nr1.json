@@ -15,6 +15,24 @@
       "title": "Hide Menu Bar",
       "description": "Hide top menu bar",
       "type": "boolean"
+    },
+    {
+      "name": "lat",
+      "title": "Default latitude (refresh after setting)",
+      "description": "",
+      "type": "number"
+    },
+    {
+      "name": "lng",
+      "title": "Default longitude (refresh after setting)",
+      "description": "",
+      "type": "number"
+    },
+    {
+      "name": "zoom",
+      "title": "Default zoom (refresh after setting)",
+      "description": "",
+      "type": "number"
     }
   ]
 }

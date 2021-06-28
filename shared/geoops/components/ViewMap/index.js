@@ -124,7 +124,7 @@ export default class ViewMap extends React.Component {
             };
           }
 
-          const { hideMenu, height, width } = this.props;
+          const { hideMenu, height, width, lat, lng, zoom } = this.props;
 
           return (
             <Grid stretched style={{ margin: '-1.25em 0 0 0' }}>
@@ -153,6 +153,9 @@ export default class ViewMap extends React.Component {
                           height={hideMenu ? height : height - 64}
                           width={width}
                           hideMenu={hideMenu}
+                          lat={lat}
+                          lng={lng}
+                          zoom={zoom}
                           selectedMap={newSelectedMap}
                           fetchData={fetchData}
                           selectedLocation={selectedLocation}

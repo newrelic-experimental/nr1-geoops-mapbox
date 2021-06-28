@@ -9,6 +9,12 @@
       "title": "Map Name",
       "description": "Enter a valid map name",
       "type": "string"
+    },
+    {
+      "name": "hideMenu",
+      "title": "Hide Menu Bar",
+      "description": "Hide top menu bar",
+      "type": "boolean"
     }
   ]
 }

@@ -19,15 +19,23 @@ export default class Map extends React.PureComponent {
       viewport: {
         latitude: parseFloat(lat) || 0,
         longitude: parseFloat(lng) || 0,
-        width: '100%',
-        height: '95vh',
+        width: props.width || '100%',
+        height: props.height || '95vh',
         zoom: defaultZoom || 4
       }
     };
   }
 
   componentDidUpdate = newProps => {
-    const { selectedLocation } = this.props;
+    const { selectedLocation, width, height } = this.props;
+    const { viewport } = this.state;
+
+    if (viewport.width !== width || viewport.height !== height) {
+      viewport.height = height;
+      viewport.width = width;
+      // eslint-disable-next-line
+      this.setState({ viewport });
+    }
 
     if (selectedLocation && !this.state.selectedLocation) {
       this.updateSelectedLocation(selectedLocation);
@@ -147,6 +155,7 @@ export default class Map extends React.PureComponent {
 
   handleViewportChanged = (viewport, updateMapContext) => {
     const { latitude, longitude, zoom } = viewport;
+    // eslint-disable-next-line
     this.setState({ viewport: { ...this.state.viewport, ...viewport } }, () =>
       updateMapContext({ currentViewport: { latitude, longitude, zoom } })
     );

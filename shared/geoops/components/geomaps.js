@@ -4,12 +4,14 @@ import CreateMap from './CreateMap';
 import MapList from './MapList';
 import ViewMap from './ViewMap';
 import MenuBar from './MenuBar';
-import { Spinner, Card, CardBody, HeadingText } from 'nr1';
+import { Spinner, Card, CardBody, HeadingText, AutoSizer } from 'nr1';
 import CustomQuery from './CustomQuery';
 import Favorites from './Favorites';
 
 export default class GeoOpsContainer extends React.Component {
   render() {
+    const hideMenu = this.props?.vizConfig?.hideMenu || null;
+
     return (
       <DataConsumer>
         {({
@@ -45,34 +47,52 @@ export default class GeoOpsContainer extends React.Component {
             }
 
             return (
-              <>
-                {(loadingGeomaps || (!mapLoaded && mapDocument)) && <Spinner />}
+              <AutoSizer>
+                {({ width, height }) => (
+                  <>
+                    {(loadingGeomaps || (!mapLoaded && mapDocument)) && (
+                      <Spinner />
+                    )}
 
-                {createMapModalOpen && <CreateMap />}
-                {queryModalOpen && <CustomQuery />}
-                {favoritesModalOpen && <Favorites />}
+                    {createMapModalOpen && <CreateMap />}
+                    {queryModalOpen && <CustomQuery />}
+                    {favoritesModalOpen && <Favorites />}
 
-                <MenuBar />
+                    {!hideMenu && <MenuBar />}
 
-                {errors.length > 0 ? (
-                  EmptyState(errors, availableMaps)
-                ) : (
-                  <ViewMap />
+                    {errors.length > 0 ? (
+                      EmptyState(errors, availableMaps)
+                    ) : (
+                      <ViewMap
+                        hideMenu={hideMenu}
+                        width={width}
+                        height={height}
+                      />
+                    )}
+                  </>
                 )}
-              </>
+              </AutoSizer>
             );
           }
 
           return (
-            <>
-              {createMapModalOpen && <CreateMap />}
-              {queryModalOpen && <CustomQuery />}
-              {favoritesModalOpen && <Favorites />}
+            <AutoSizer>
+              {({ width, height }) => (
+                <>
+                  {createMapModalOpen && <CreateMap />}
+                  {queryModalOpen && <CustomQuery />}
+                  {favoritesModalOpen && <Favorites />}
 
-              <MenuBar />
+                  <MenuBar />
 
-              {selectedMap?.document ? <ViewMap /> : <MapList />}
-            </>
+                  {selectedMap?.document ? (
+                    <ViewMap width={width} height={height} />
+                  ) : (
+                    <MapList />
+                  )}
+                </>
+              )}
+            </AutoSizer>
           );
         }}
       </DataConsumer>

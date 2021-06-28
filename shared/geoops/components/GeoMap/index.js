@@ -69,12 +69,18 @@ export default class GeoMap extends React.PureComponent {
       fullscreen
     } = this.state;
 
-    const { selectedMap, selectedLocation, updateMapContext } = this.props;
+    const {
+      selectedMap,
+      selectedLocation,
+      updateMapContext,
+      width,
+      height
+    } = this.props;
 
     const { geojson } = selectedMap;
 
     return (
-      <>
+      <div>
         <Modal
           hidden={modalHidden}
           onClose={() => this.setState({ modalHidden: true })}
@@ -88,6 +94,8 @@ export default class GeoMap extends React.PureComponent {
         </Modal>
 
         <Map
+          width={width}
+          height={height}
           selectedMap={selectedMap}
           moveViewport={moveViewport}
           updateMapContext={updateMapContext}
@@ -118,7 +126,7 @@ export default class GeoMap extends React.PureComponent {
                         </div> */}
           </Source>
         </Map>
-      </>
+      </div>
     );
   }
 }

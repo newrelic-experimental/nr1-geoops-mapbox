@@ -8,7 +8,7 @@ export default class GeoOps extends React.Component {
 
     return (
       <DataProvider isWidget={isWidget} vizConfig={vizConfig}>
-        <GeoOpsContainer />
+        <GeoOpsContainer vizConfig={vizConfig} />
       </DataProvider>
     );
   }

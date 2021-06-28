@@ -89,8 +89,6 @@ export default class ViewMap extends React.Component {
         }) => {
           const mapLoaded = selectedMap?.mapLoaded || false;
 
-          console.log(selectedLocation);
-
           if (!mapLoaded) {
             return (
               <div
@@ -126,9 +124,11 @@ export default class ViewMap extends React.Component {
             };
           }
 
+          const { hideMenu, height, width } = this.props;
+
           return (
             <Grid stretched style={{ margin: '-1.25em 0 0 0' }}>
-              <Grid.Row>
+              <Grid.Row style={{ paddingBottom: '0px' }}>
                 <Grid.Column width={16} style={{ padding: 0 }}>
                   <Sidebar.Pushable as={Segment}>
                     <Sidebar
@@ -150,6 +150,9 @@ export default class ViewMap extends React.Component {
                     <Sidebar.Pusher>
                       <Segment basic>
                         <GeoMap
+                          height={hideMenu ? height : height - 64}
+                          width={width}
+                          hideMenu={hideMenu}
                           selectedMap={newSelectedMap}
                           fetchData={fetchData}
                           selectedLocation={selectedLocation}

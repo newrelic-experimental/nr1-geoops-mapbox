@@ -54,7 +54,7 @@ export default class ModalContent extends React.PureComponent {
 
     const guids = [
       properties.guid,
-      ...(properties?.relationships || []).map(t => t.target.guid)
+      ...(properties?.relatedEntities?.results || []).map(t => t.target.guid)
     ];
 
     const { alertHighest } = properties;

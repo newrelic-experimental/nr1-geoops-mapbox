@@ -149,7 +149,7 @@ export const getWorkloadsForMap = async (accountId, mapId) => {
   newValues.forEach((item, itemIndex) => {
     newValues[itemIndex].alertLevel = ALERT_LEVELS[item.alertSeverity];
     newValues[itemIndex].alertHighest = item.alertSeverity;
-    (item?.relationships || []).forEach(r => {
+    (item?.relatedEntities?.results || []).forEach(r => {
       const alertValue = r?.target?.entity?.alertSeverity || null;
       const nestedAlertSeverity = ALERT_LEVELS[alertValue] || 0;
       if (nestedAlertSeverity > newValues[itemIndex].alertLevel) {
@@ -333,17 +333,19 @@ actor {
         summary
         description
       }
-      relationships {
-        target {
-          entity {
-            guid
-            name
-            ... on AlertableEntityOutline {
-              alertSeverity
+      relatedEntities {
+        results {
+          target {
+            entity {
+              guid
+              name
+              ... on AlertableEntityOutline {
+                alertSeverity
+              }
+              entityType
+              domain
+              type
             }
-            entityType
-            domain
-            type
           }
         }
       }

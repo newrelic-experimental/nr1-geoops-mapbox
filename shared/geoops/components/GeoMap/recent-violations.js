@@ -29,7 +29,9 @@ export default class RecentViolations extends React.PureComponent {
 
     const entities = [
       { ...properties },
-      ...(properties.relationships || []).map(({ target }) => target.entity)
+      ...(properties.relatedEntities?.results || []).map(
+        ({ target }) => target.entity
+      )
     ];
 
     if (JSON.stringify(entities) !== JSON.stringify(this.state.entities)) {
@@ -43,13 +45,11 @@ export default class RecentViolations extends React.PureComponent {
 
       const nestedEntities = [];
       entities.forEach(e => {
-        if (e.relationships) {
-          e.relationships.forEach(r => {
-            if (r.target && r.target.entity) {
-              nestedEntities.push(r.target.entity);
-            }
-          });
-        }
+        (e.relatedEntities?.results || []).forEach(r => {
+          if (r.target && r.target.entity) {
+            nestedEntities.push(r.target.entity);
+          }
+        });
       });
 
       const completeEntities = [...entities, ...nestedEntities];

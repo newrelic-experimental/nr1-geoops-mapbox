@@ -11,8 +11,6 @@ export default class Map extends React.PureComponent {
 
     this.mapRef = React.createRef();
 
-    console.log(props);
-
     this.state = {
       error: apiKey ? false : 'Error: API Key not found. Check map config',
       apiKey: apiKey,

@@ -90,7 +90,7 @@ export default class MenuBar extends React.PureComponent {
         }) => {
           const { document, geojson } = selectedMap || {};
 
-          const mapLoaded = geojson && workloads.length ? true : false;
+          const mapLoaded = geojson && workloads.length ? true : false; //eslint-disable-line
 
           // const locationOptions = (alertFilter || []).length ? this.buildFilteredLocationOptions(alertFilter, locationOptions)
 
@@ -113,7 +113,7 @@ export default class MenuBar extends React.PureComponent {
             ? this.buildLocationOptions(workloads)
             : [];
 
-          console.log({ locationOptions }); //eslint-disable-line
+          // console.log({ locationOptions }); //eslint-disable-line
 
           // const locationOptions =  alertFilter ? (((geojson || {}).features || [])
           //     .filter(f => f.properties.alertHighest === (alertFilter || {}).value)

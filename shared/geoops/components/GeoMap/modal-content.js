@@ -21,7 +21,10 @@ export default class ModalContent extends React.PureComponent {
 
   handleItemClick = (e, { name: activeItem }) => this.setState({ activeItem });
 
-  renderChart = (accountId, guids, q, name) => {
+  renderChart = (accountId, guids, q, properties) => {
+    const { name } = properties;
+    const tags = properties.tags || [];
+
     let finalNrql = q.nrql;
 
     if (q.filterEntities && guids.length > 0) {
@@ -29,6 +32,19 @@ export default class ModalContent extends React.PureComponent {
     }
 
     finalNrql = finalNrql.replaceAll('${name}', name); //eslint-disable-line
+
+    // tag replacements
+    tags.forEach(t => {
+      finalNrql = finalNrql.replaceAll(
+        `\${tags.geomaps.${t.key}}`,
+        t?.values?.[0]
+      ); //eslint-disable-line
+      finalNrql = finalNrql.replaceAll(`\${geomaps.${t.key}}`, t?.values?.[0]); //eslint-disable-line
+      finalNrql = finalNrql.replaceAll(`\${tags.${t.key}}`, t?.values?.[0]); //eslint-disable-line
+      finalNrql = finalNrql.replaceAll(`\${${t.key}}`, t?.values?.[0]); //eslint-disable-line
+    });
+
+    console.log(`Chart query: ${finalNrql}`); //eslint-disable-line
 
     switch (q.chart) {
       case 'billboard': {
@@ -108,7 +124,7 @@ export default class ModalContent extends React.PureComponent {
                   {q.name}
                 </HeadingText>
               )}
-              {this.renderChart(accountId, guids, q, properties.name)}
+              {this.renderChart(accountId, guids, q, properties)}
             </div>
           );
         })}

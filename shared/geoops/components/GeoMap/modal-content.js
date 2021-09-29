@@ -35,13 +35,17 @@ export default class ModalContent extends React.PureComponent {
 
     // tag replacements
     tags.forEach(t => {
-      finalNrql = finalNrql.replaceAll(
+      // match other combinations if possible
+      const tagCombos = [
+        `\${${t.key}}`,
         `\${tags.geomaps.${t.key}}`,
-        t?.values?.[0]
-      ); //eslint-disable-line
-      finalNrql = finalNrql.replaceAll(`\${geomaps.${t.key}}`, t?.values?.[0]); //eslint-disable-line
-      finalNrql = finalNrql.replaceAll(`\${tags.${t.key}}`, t?.values?.[0]); //eslint-disable-line
-      finalNrql = finalNrql.replaceAll(`\${${t.key}}`, t?.values?.[0]); //eslint-disable-line
+        `\${tags.${t.key}}`,
+        `\${geomaps.${t.key}}`
+      ];
+
+      tagCombos.forEach(combo => {
+        finalNrql = finalNrql.replaceAll(combo, t?.values?.[0]);
+      });
     });
 
     console.log(`Chart query: ${finalNrql}`); //eslint-disable-line
@@ -203,7 +207,7 @@ export default class ModalContent extends React.PureComponent {
                       {q.name}
                     </HeadingText>
                   )}
-                  {this.renderChart(accountId, guids, q, properties.name)}
+                  {this.renderChart(accountId, guids, q, properties)}
                 </div>
               );
             })}

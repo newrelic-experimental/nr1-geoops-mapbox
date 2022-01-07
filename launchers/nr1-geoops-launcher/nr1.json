@@ -1,7 +1,7 @@
 {
     "schemaType": "LAUNCHER",
     "id": "nr1-geoops-mapbox-launcher",
-    "displayName": "GeoOps Mapbox",
+    "displayName": "GeoOps Mapbox (Sentinel)",
     "description": "Visualize your entities and data with Mapbox",
     "rootNerdletId": "nr1-geoops-mapbox-nerdlet"
 }

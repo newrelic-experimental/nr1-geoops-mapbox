@@ -11,6 +11,8 @@
     "nr1": {
         "uuid": "1d99250c-4cf1-4380-8e2d-b62797fff014"
     },
+    "unified": "ae21c14c-25b5-469e-945c-fd823b8a4207",
+    "demo":"d8f52249-2fc8-428b-be97-12969e0ff6b9",
     "dependencies": {
         "react-dom": "^16.6.3",
         "@newrelic/nr1-community": "^1.2.0",

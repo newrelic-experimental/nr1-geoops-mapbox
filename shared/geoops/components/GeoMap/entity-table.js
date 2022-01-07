@@ -28,9 +28,26 @@ const getAlertColor = alertHighest => {
 };
 
 export default class EntityTable extends React.PureComponent {
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      column: 0,
+      sortingType: TableHeaderCell.SORTING_TYPE.NONE
+    };
+  }
+
+  onClickTableHeaderCell = (column, { nextSortingType }) => {
+    if (column === this.state.column) {
+      this.setState({ sortingType: nextSortingType });
+    } else {
+      this.setState({ column, sortingType: nextSortingType });
+    }
+  };
+
   render() {
     const { popupData, updateMapState } = this.props;
     const { properties } = popupData;
+    const { column, sortingType } = this.state;
 
     const entities = [
       { ...properties },
@@ -49,14 +66,31 @@ export default class EntityTable extends React.PureComponent {
             value={({ item }) => item.alertSeverity || 'UNCONFIGURED'}
             width="fit-content"
             alignmentType={TableRowCell.ALIGNMENT_TYPE.LEFT}
+            sortable
+            sortingType={
+              column === 0 ? sortingType : TableHeaderCell.SORTING_TYPE.NONE
+            }
+            onClick={(event, data) => this.onClickTableHeaderCell(0, data)}
           />
           <TableHeaderCell
             value={({ item }) => item.name}
             alignmentType={TableRowCell.ALIGNMENT_TYPE.LEFT}
+            sortable
+            sortingType={
+              column === 1 ? sortingType : TableHeaderCell.SORTING_TYPE.NONE
+            }
+            onClick={(event, data) => this.onClickTableHeaderCell(1, data)}
           >
             Name
           </TableHeaderCell>
-          <TableHeaderCell value={({ item }) => item.entityType}>
+          <TableHeaderCell
+            value={({ item }) => item.entityType}
+            sortable
+            sortingType={
+              column === 2 ? sortingType : TableHeaderCell.SORTING_TYPE.NONE
+            }
+            onClick={(event, data) => this.onClickTableHeaderCell(2, data)}
+          >
             Type
           </TableHeaderCell>
         </TableHeader>

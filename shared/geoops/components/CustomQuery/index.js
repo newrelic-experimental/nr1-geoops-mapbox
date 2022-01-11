@@ -89,9 +89,9 @@ export default class CustomQuery extends React.PureComponent {
       name: this.state[`${i}_name`] || q.name,
       nrql: this.state[`${i}_nrql`] || q.nrql,
       category: this.state[`${i}_category`] || q.category,
-      filterEntities: this.state[`${i}_filterEntities`] || q.filterEntities,
+      filterEntities: this.state[`${i}_filterEntities`],
       chart: this.state[`${i}_chart`] || q.chart,
-      hideTitle: this.state[`${i}_hideTitle`] || q.hideTitle
+      hideTitle: this.state[`${i}_hideTitle`]
     };
     map.document.queries = newQueries;
 
